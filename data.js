@@ -1,4 +1,5 @@
 noteList = {
+    "project": "Project_1",
     "notes": [
         {
             "id": 0,
