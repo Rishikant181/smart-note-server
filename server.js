@@ -3,14 +3,14 @@ const { graphqlHTTP } = require('express-graphql');
 const { GraphQLSchema } = require('graphql');
 
 const { RootQuery } = require('./queries/root');
-const { RootMutation } = require('./mutations/mutations');
+const { RootMutation } = require('./mutations/root');
 
 const app = express();
 
 // Initialising the schema
 const schema = new GraphQLSchema({
     query: RootQuery,
-    mutation: RootMutation
+    mutation: RootMutation,
 });
 
 // Adding graphql middleware
