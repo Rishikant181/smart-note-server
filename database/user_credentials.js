@@ -35,15 +35,17 @@ async function addUser(firstName, lastName, email, pass) {
     // If sucessfull
     if(response['acknowledged']) {
         return {
-            signup: true,
-            message: 'Signup was sucessfull'
+            success: true,
+            type: 'SignupSucessful',
+            details: ''
         };
     }
     // If failed
     else {
         return {
-            signup: false,
-            message: 'Signup failed!'
+            success: true,
+            type: 'SignupFailed',
+            details: ''
         };
     }    
 }
@@ -76,15 +78,17 @@ async function verifyUserCredentials(email, pass) {
     // If password valid
     if(response && response['pass'] === pass) {
         return {
-            login: true,
-            message: "Login sucessfull"
+            success: true,
+            type: 'LoginSuccess',
+            details: ''
         };
     }
     // If invalid password
     else {
         return {
-            login: false,
-            message: "Account does not exist!"
+            success: false,
+            type: 'AccountNotFound',
+            details: ''
         };
     }
 }

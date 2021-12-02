@@ -1,13 +1,16 @@
 const {
-    UserSignupCredential,
-    SignupResult
+    UserSignupCredential
 } = require('../types/user-type');
+
+const {
+    Response
+} = require('../types/http');
 
 const { addUser } = require('../database/user_credentials')
 
 // To add the new user's credentials to db
 const signup = {
-    type: SignupResult,
+    type: Response,
     args: {
         creds: { type: UserSignupCredential },
     },

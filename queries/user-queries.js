@@ -3,9 +3,12 @@ const {
 } = require('graphql');
 
 const {
-    UserCredential,
-    LoginResult
+    UserCredential
 } = require('../types/user-type');
+
+const {
+    Response
+} = require('../types/http');
 
 const { verifyUserCredentials } = require('../database/user_credentials');
 
@@ -17,7 +20,7 @@ const allCreds = {
 
 // To verify login credentials
 const login = {
-    type: LoginResult,
+    type: Response,
     args: {
         email: { type: GraphQLNonNull(GraphQLString) },
         pass: { type: GraphQLNonNull(GraphQLString) },
