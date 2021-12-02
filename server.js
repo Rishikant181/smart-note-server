@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const { GraphQLSchema } = require('graphql');
 // const { MongoClient } = require('mongodb');
@@ -14,6 +15,9 @@ const schema = new GraphQLSchema({
     query: RootQuery,
     mutation: RootMutation,
 });
+
+// Using cors
+app.use(cors());
 
 // Adding graphql middleware
 app.use('/graphql', graphqlHTTP({
