@@ -1,6 +1,7 @@
 const {
-    UserSignupCredential
-} = require('../types/user-type');
+    GraphQLNonNull,
+    GraphQLString
+} = require('graphql')
 
 const {
     Response
@@ -12,9 +13,12 @@ const { addUser } = require('../database/user_credentials')
 const signup = {
     type: Response,
     args: {
-        creds: { type: UserSignupCredential },
+        firstName: { type: GraphQLNonNull(GraphQLString) },
+        lastName: { type: GraphQLNonNull(GraphQLString) },
+        email: { type: GraphQLNonNull(GraphQLString) },
+        pass: { type: GraphQLNonNull(GraphQLString) },
     },
-    resolve: (parent, args) => addUser(args.creds.firstName, args.creds.lastName, args.creds.email, args.creds.pass)
+    resolve: (parent, args) => addUser(args.firstName, args.lastName, args.email, args.pass)
 }
 
 module.exports.signup = signup;

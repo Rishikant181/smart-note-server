@@ -40,19 +40,6 @@ const UserCredential = new GraphQLObjectType({
     })
 });
 
-// To store the input credentials for creating a new account
-const UserSignupCredential = new GraphQLInputObjectType({
-    name: 'UserSignupCredential',
-    description: 'To store the credentials used for creating a new account',
-    fields: () => ({
-        firstName: { type: GraphQLNonNull(GraphQLString) },
-        lastName: { type: GraphQLNonNull(GraphQLString) },
-        email: { type: GraphQLNonNull(GraphQLString) },
-        pass: { type: GraphQLNonNull(GraphQLString) },
-    })
-})
-
 module.exports.LoginResult = LoginResult;
 module.exports.SignupResult = SignupResult;
 module.exports.UserCredential = UserCredential;
-module.exports.UserSignupCredential = UserSignupCredential;
