@@ -1,11 +1,11 @@
-/* This file contains various methods for querying the user_credentials collections */
+/* This file contains various methods for querying the user_credentials collection */
 
 const { MongoClient } = require('mongodb');
 
 const config = require('../config/env.json');
 
 // Method to add a new user
-async function addUser(firstName, lastName, email, pass) {
+async function addUserCredentials(firstName, lastName, email, pass) {
     // Creating a new connection to database
     const mongoClient = new MongoClient(config['mongo_uri']);
 
@@ -97,5 +97,5 @@ async function verifyUserCredentials(email, pass) {
     }
 }
 
-module.exports.addUser = addUser;
+module.exports.addUserCredentials = addUserCredentials;
 module.exports.verifyUserCredentials = verifyUserCredentials;
