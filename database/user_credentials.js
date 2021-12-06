@@ -23,8 +23,12 @@ async function addUser(firstName, lastName, email, pass) {
     // Getting the collection to insert credentials into
     const collection = mongoClient.db(config['db_name']).collection(config['collections']['user_credentials']);
 
+    // Getting collection length(number of entries), used later for assigning uid
+    const uid = (await collection.find().toArray()).length;
+
     // Executing query to add a new user's credentials
     const response = await collection.insertOne({
+        uid: uid,
         firstName: firstName,
         lastName: lastName,
         email: email,

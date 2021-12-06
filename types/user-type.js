@@ -2,32 +2,10 @@
 
 const {
     GraphQLObjectType,
-    GraphQLInputObjectType,
     GraphQLInt,
     GraphQLNonNull,
     GraphQLString,
-    GraphQLBoolean
 } = require('graphql');
-
-// To store the login result
-const LoginResult = new GraphQLObjectType({
-    name: 'LoginResult',
-    description: 'To store the result of credentials verification',
-    fields: () => ({
-        login: { type: GraphQLBoolean },
-        message: { type: GraphQLString },
-    })
-});
-
-// To store the signup result
-const SignupResult = new GraphQLObjectType({
-    name: 'SignupResult',
-    description: 'To store the result of signing up',
-    fields: () => ({
-        signup: { type: GraphQLBoolean },
-        message: { type: GraphQLString },
-    })
-})
 
 // To store actual user credentials
 const UserCredential = new GraphQLObjectType({
@@ -40,6 +18,4 @@ const UserCredential = new GraphQLObjectType({
     })
 });
 
-module.exports.LoginResult = LoginResult;
-module.exports.SignupResult = SignupResult;
 module.exports.UserCredential = UserCredential;
