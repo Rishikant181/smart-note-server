@@ -8,7 +8,8 @@ const {
     Response
 } = require('../types/http');
 
-const { addUserCredentials } = require('../database/user_credentials')
+const { addUserCredentials } = require('../database/user_credentials');
+const { updateAccountDetails } = require('../database/user_account_details');
 
 // To add the new user's credentials to db
 const signup = {
@@ -23,15 +24,17 @@ const signup = {
 }
 
 // To update the user's account details to new ones
-const update = {
+const updateDetails = {
     type: Response,
     args: {
+        email: { type: GraphQLString },
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
         phone: { type: GraphQLInt },
         pass: { type: GraphQLString },
     },
-    resolve: (parent, args) => updateAccountDetails(args.firstName, args.lastName, args.phone, args.pass)
+    resolve: (parent, args) => updateAccountDetails(args.email, args.firstName, args.lastName, args.phone, args.pass)
 }
 
 module.exports.signup = signup;
+module.exports.updateDetails = updateDetails;

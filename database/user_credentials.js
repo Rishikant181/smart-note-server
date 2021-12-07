@@ -14,10 +14,10 @@ async function addUserCredentials(firstName, lastName, email, pass) {
         mongoClient.connect();
     }
     // If error connecting to db
-    catch(exception) {
+    catch(err) {
         console.log("Failed connecting to MongoDB");
         console.log("Error: ");
-        console.log(exception);
+        console.log(err);
     }
 
     // Getting the collection to insert credentials into

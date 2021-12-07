@@ -3,7 +3,8 @@ const {
 } = require('graphql');
 
 const {
-    signup
+    signup,
+    updateDetails
 } = require('./user-mutations');
 
 // Initialising the root mutation
@@ -12,6 +13,7 @@ const RootMutation = new GraphQLObjectType({
     description: 'Root Mutation',
     fields: () => ({
         signup: signup,
+        updateDetails: updateDetails
     })
 })
 
