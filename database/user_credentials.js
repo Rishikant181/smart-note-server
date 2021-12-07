@@ -41,7 +41,8 @@ async function addUserCredentials(firstName, lastName, email, pass) {
         return {
             success: true,
             type: 'SignupSucessful',
-            details: ''
+            details: '',
+            data: {}
         };
     }
     // If failed
@@ -49,7 +50,8 @@ async function addUserCredentials(firstName, lastName, email, pass) {
         return {
             success: true,
             type: 'SignupFailed',
-            details: ''
+            details: '',
+            data: {}
         };
     }    
 }
@@ -84,7 +86,8 @@ async function verifyUserCredentials(email, pass) {
         return {
             success: true,
             type: 'LoginSuccess',
-            details: ''
+            details: '',
+            data: {}
         };
     }
     // If invalid password
@@ -92,7 +95,8 @@ async function verifyUserCredentials(email, pass) {
         return {
             success: false,
             type: 'AccountNotFound',
-            details: ''
+            details: '',
+            data: {}
         };
     }
 }

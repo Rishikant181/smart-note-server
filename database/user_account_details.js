@@ -52,7 +52,8 @@ async function updateAccountDetails(email, firstName, lastName, phone) {
         return {
             success: true,
             type: 'AccountUpdated',
-            details: ''
+            details: '',
+            data: {}
         }
     }
     // If failed
@@ -60,7 +61,8 @@ async function updateAccountDetails(email, firstName, lastName, phone) {
         return {
             success: true,
             type: 'AccountUpdateFailed',
-            details: ''
+            details: '',
+            data: {}
         }
     }
 }
