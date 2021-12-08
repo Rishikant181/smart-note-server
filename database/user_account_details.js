@@ -26,24 +26,22 @@ async function updateAccountDetails(email, firstName, lastName, phone) {
     // Getting the collection to update account details from
     const collection = mongoClient.db(config['db_name']).collection(config['collections']['user_account_details']);
 
+    // Initialising the data to update/insert
+    const data = {
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        phone, phone
+    };
+    
     // Checking if account exists
     // If account already exists, then updating
     if(await collection.findOne({ email: email })) {
-        response = await collection.updateOne({ email: email }, { $set: {
-            email: email,
-            firstName: firstName,
-            lastName: lastName,
-            phone: phone
-        }});
+        response = await collection.updateOne({ email: email }, { $set: data});
     }
     // Else, adding
     else {
-        response = await collection.insertOne({
-            email: email,
-            firstName: firstName,
-            lastName: lastName,
-            phone: phone
-        })
+        response = await collection.insertOne(data);
     }
 
     // Evaluating response
@@ -53,7 +51,7 @@ async function updateAccountDetails(email, firstName, lastName, phone) {
             success: true,
             type: 'AccountUpdated',
             details: '',
-            data: {}
+            data: data
         }
     }
     // If failed
@@ -62,7 +60,7 @@ async function updateAccountDetails(email, firstName, lastName, phone) {
             success: true,
             type: 'AccountUpdateFailed',
             details: '',
-            data: {}
+            data: data
         }
     }
 }

@@ -23,17 +23,17 @@ async function addUserCredentials(firstName, lastName, email, pass) {
     // Getting the collection to insert credentials into
     const collection = mongoClient.db(config['db_name']).collection(config['collections']['user_credentials']);
 
-    // Getting collection length(number of entries), used later for assigning uid
-    const uid = (await collection.find().toArray()).length;
-
-    // Executing query to add a new user's credentials
-    const response = await collection.insertOne({
-        uid: uid,
+    // Initialising the data to insert
+    const data = {
+        uid: (await collection.find().toArray()).length,
         firstName: firstName,
         lastName: lastName,
         email: email,
         pass: pass
-    });
+    };
+    
+    // Executing query to add a new user's credentials
+    const response = await collection.insertOne(data);
 
     // Evaluating response
     // If sucessfull
@@ -42,7 +42,7 @@ async function addUserCredentials(firstName, lastName, email, pass) {
             success: true,
             type: 'SignupSucessful',
             details: '',
-            data: {}
+            data: data
         };
     }
     // If failed
@@ -51,7 +51,7 @@ async function addUserCredentials(firstName, lastName, email, pass) {
             success: true,
             type: 'SignupFailed',
             details: '',
-            data: {}
+            data: data
         };
     }    
 }
