@@ -1,3 +1,5 @@
+const { creds } = require('../data/user-creds');
+
 const {
     GraphQLList, GraphQLString, GraphQLNonNull
 } = require('graphql');

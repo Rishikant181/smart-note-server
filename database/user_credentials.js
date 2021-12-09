@@ -4,6 +4,10 @@ const { MongoClient } = require('mongodb');
 
 const config = require('../config/env.json');
 
+const {
+    generateJWT
+} = require('../helper/auth');
+
 // Method to add a new user
 async function addUserCredentials(firstName, lastName, email, pass) {
     // Creating a new connection to database
@@ -87,7 +91,9 @@ async function verifyUserCredentials(email, pass) {
             success: true,
             type: 'LoginSuccess',
             details: '',
-            data: {}
+            data: {
+                authorizationToken: generateJWT(email)
+            }
         };
     }
     // If invalid password
