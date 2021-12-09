@@ -3,7 +3,7 @@ const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const { GraphQLSchema } = require('graphql');
 
-const { config } = require('./config/env.json');
+const config = require('./config/env.json');
 const { authorizeToken } = require('./helper/auth');
 const { RootQuery } = require('./queries/root');
 const { RootMutation } = require('./mutations/root');
@@ -27,3 +27,8 @@ app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true
 }));
+
+// Starting server
+app.listen(config['port'], config['host'], () => {
+    console.log(`Listening on host ${config['host']} at port ${config['port']}`);
+});

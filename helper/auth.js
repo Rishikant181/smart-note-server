@@ -11,7 +11,7 @@ function generateJWT(email) {
         email: email
     };
 
-    // Creating a jwt and returning it
+    // Creating an authorization token and returning it
     return jwt.sign(user, config['jwt']['PRIVATE_KEY']);
 }
 
@@ -21,15 +21,22 @@ function authorizeToken(req, res, next) {
     const authorizationToken = req.headers['Authorization'] ? req.headers['Authorization'].split()[1] : null;
 
     // Verifying authorization token
+    // If authoriztion token is present
     if(authorizationToken) {
         jwt.verify(authorizationToken, config['jwt']['PRIVATE_KEY'], (err, user) => {
+            // If invalid token, sending 'Forbidden' response
             if(err) {
                 return res.sendStatus(403);
             }
-            req.user = user;
+            // Else adding the credential id to request
+            else {
+                req.user = user;    
+            }
+            // Moving on with request
             next();
         });
     }
+    // Else sending 'Forbidden' response
     else {
         res.sendStatus(403);
     }
