@@ -18,7 +18,7 @@ function generateJWT(email) {
 // Method to authenticate auth token received from client
 function authorizeToken(req, res, next) {
     // Getting authorization token from request
-    const authorizationToken = req.headers['Authorization'] ? req.headers['Authorization'].split()[1] : null;
+    const authorizationToken = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
 
     // Verifying authorization token
     // If authoriztion token is present
