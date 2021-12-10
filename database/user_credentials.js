@@ -9,7 +9,7 @@ const {
 } = require('../helper/auth');
 
 // Method to add a new user
-async function addUserCredentials(firstName, lastName, email, pass) {
+async function addUserCredentials(email, pass) {
     // Creating a new connection to database
     const mongoClient = new MongoClient(config['mongo_uri']);
 
@@ -29,9 +29,6 @@ async function addUserCredentials(firstName, lastName, email, pass) {
 
     // Initialising the data to insert
     const data = {
-        uid: (await collection.find().toArray()).length,
-        firstName: firstName,
-        lastName: lastName,
         email: email,
         pass: pass
     };

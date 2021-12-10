@@ -2,7 +2,6 @@
 
 const {
     GraphQLObjectType,
-    GraphQLInt,
     GraphQLNonNull,
     GraphQLString,
 } = require('graphql');
@@ -12,7 +11,6 @@ const UserCredential = new GraphQLObjectType({
     name: 'UserCredential',
     description: 'To store the credentials of a user',
     fields: () => ({
-        id: { type: GraphQLNonNull(GraphQLInt) },
         email: {type: GraphQLNonNull(GraphQLString) },
         pass: {type: GraphQLNonNull(GraphQLString) },
     })
