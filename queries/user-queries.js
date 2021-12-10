@@ -1,9 +1,3 @@
-const { creds } = require('../data/user-creds');
-
-const {
-    GraphQLList, GraphQLString, GraphQLNonNull
-} = require('graphql');
-
 const {
     UserCredential
 } = require('../types/user-type');
@@ -14,21 +8,13 @@ const {
 
 const { verifyUserCredentials } = require('../database/user_credentials');
 
-// *TESTING ONLY!* To get all credentials
-const allCreds = {
-    type: GraphQLList(UserCredential),
-    resolve: () => (creds)
-};
-
 // To verify login credentials
 const login = {
     type: Response,
     args: {
-        email: { type: GraphQLNonNull(GraphQLString) },
-        pass: { type: GraphQLNonNull(GraphQLString) },
+        cred: { type: UserCredential }
     },
-    resolve: (parent, args) => verifyUserCredentials(args.email, args.pass)
+    resolve: (parent, args) => verifyUserCredentials(args.cred)
 }
 
-module.exports.allCreds = allCreds;
 module.exports.login = login;

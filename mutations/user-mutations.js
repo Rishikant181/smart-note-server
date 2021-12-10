@@ -1,7 +1,5 @@
 const {
-    GraphQLNonNull,
     GraphQLString,
-    GraphQLInt
 } = require('graphql')
 
 const {
@@ -10,16 +8,19 @@ const {
 
 const { addUserCredentials } = require('../database/user_credentials');
 const { updateAccountDetails } = require('../database/user_account_details');
-const { NewAccountDetails } = require('../types/user-type');
+
+const {
+    NewAccountDetails,
+    UserCredential
+} = require('../types/user-type');
 
 // To add the new user's credentials to db
 const signup = {
     type: Response,
     args: {
-        email: { type: GraphQLNonNull(GraphQLString) },
-        pass: { type: GraphQLNonNull(GraphQLString) }
+        cred: { type: UserCredential }
     },
-    resolve: (parent, args) => addUserCredentials(args.email, args.pass)
+    resolve: (parent, args) => addUserCredentials(args.cred)
 }
 
 // To update the user's account details to new ones

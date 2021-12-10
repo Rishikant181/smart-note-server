@@ -9,7 +9,7 @@ const {
 } = require('../helper/auth');
 
 // Method to add a new user
-async function addUserCredentials(email, pass) {
+async function addUserCredentials(cred) {
     // Creating a new connection to database
     const mongoClient = new MongoClient(config['mongo_uri']);
 
@@ -29,8 +29,8 @@ async function addUserCredentials(email, pass) {
 
     // Initialising the data to insert
     const data = {
-        email: email,
-        pass: pass
+        email: cred.email,
+        pass: cred.pass
     };
     
     // Executing query to add a new user's credentials
@@ -58,7 +58,7 @@ async function addUserCredentials(email, pass) {
 }
 
 // Method to fetch user password for credential verification
-async function verifyUserCredentials(email, pass) {
+async function verifyUserCredentials(cred) {
     // Creating a new connection to database
     const mongoClient = new MongoClient(config['mongo_uri']);
 
@@ -78,18 +78,18 @@ async function verifyUserCredentials(email, pass) {
 
     // Executing query to get user password
     const response = await collection.findOne({
-        email: email
+        email: cred.email
     });
 
     // Evaluating response
     // If password valid
-    if(response && response['pass'] === pass) {
+    if(response && response['pass'] === cred.pass) {
         return {
             success: true,
             type: 'LoginSuccess',
             details: '',
             data: {
-                authorizationToken: generateJWT(email)
+                authorizationToken: generateJWT(cred.email)
             }
         };
     }

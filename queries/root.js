@@ -12,7 +12,6 @@ const RootQuery = new GraphQLObjectType({
     name: 'Query',
     description: 'Root query',
     fields: () => ({
-        allCreds: allCreds,
         login: login,
     })
 })

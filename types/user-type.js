@@ -8,8 +8,8 @@ const {
     GraphQLInt,
 } = require('graphql');
 
-// To store actual user credentials
-const UserCredential = new GraphQLObjectType({
+// To store input user credentials
+const UserCredential = new GraphQLInputObjectType({
     name: 'UserCredential',
     description: 'To store the credentials of a user',
     fields: () => ({
