@@ -5,7 +5,7 @@ const { MongoClient } = require('mongodb');
 const config = require('../config/env.json');
 
 // Method to update user account details
-async function updateAccountDetails(email, firstName, lastName, phone) {
+async function updateAccountDetails(email, details) {
     // Variable declaration
     var response = {};                                                       // To store the response received from MongoDB
 
@@ -29,9 +29,9 @@ async function updateAccountDetails(email, firstName, lastName, phone) {
     // Initialising the data to update/insert
     const data = {
         email: email,
-        firstName: firstName,
-        lastName: lastName,
-        phone, phone
+        firstName: details.firstName,
+        lastName: details.lastName,
+        phone: details.phone
     };
     
     // Checking if account exists
