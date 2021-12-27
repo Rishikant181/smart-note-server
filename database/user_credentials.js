@@ -5,8 +5,43 @@ const { MongoClient } = require('mongodb');
 const config = require('../config/env.json');
 
 const {
+    updateAccountDetails
+} = require('./user_account_details')
+
+const {
     generateJWT
 } = require('../helper/auth');
+
+// Method to add a new user account
+async function addUserAccount(cred, details) {
+    // Adding user credentials
+    credRes = await addUserCredentials(cred);
+
+    console.log(cred);
+    console.log(details);
+
+    // Credentials added then adding account details
+    if(credRes.success) {
+        detailsRes = await updateAccountDetails(cred.email, details);
+
+        // If details added
+        if(detailsRes.success) {
+            return {
+                success: true,
+                type: 'AccountCreated',
+                data: details
+            };
+        }
+    }
+    // If account creation failed 
+    else {
+        return {
+            success: false,
+            type: 'AccountCreationFailed',
+            data: details
+        };
+    }
+}
 
 // Method to add a new user
 async function addUserCredentials(cred) {
@@ -104,5 +139,6 @@ async function verifyUserCredentials(cred) {
     }
 }
 
+module.exports.addUserAccount = addUserAccount;
 module.exports.addUserCredentials = addUserCredentials;
 module.exports.verifyUserCredentials = verifyUserCredentials;

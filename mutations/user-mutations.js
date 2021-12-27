@@ -6,7 +6,10 @@ const {
     Response
 } = require('../types/http');
 
-const { addUserCredentials } = require('../database/user_credentials');
+const {
+    addUserAccount
+} = require('../database/user_credentials');
+
 const { updateAccountDetails } = require('../database/user_account_details');
 
 const {
@@ -18,9 +21,10 @@ const {
 const signup = {
     type: Response,
     args: {
-        cred: { type: UserCredential }
+        cred: { type: UserCredential },
+        details: { type: NewAccountDetails }
     },
-    resolve: (parent, args) => addUserCredentials(args.cred)
+    resolve: (parent, args) => addUserAccount(args.cred, args.details)
 }
 
 // To update the user's account details to new ones
