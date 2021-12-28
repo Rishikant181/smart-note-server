@@ -24,8 +24,7 @@ const NewAccountDetails = new GraphQLInputObjectType({
     description: 'To store the new account details of user',
     fields: () => ({
         firstName: { type: GraphQLString },
-        lastName: { type: GraphQLString },
-        phone: { type: GraphQLInt }
+        lastName: { type: GraphQLString }
     })
 });
 

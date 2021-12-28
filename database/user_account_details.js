@@ -30,8 +30,7 @@ async function updateAccountDetails(email, details) {
     const data = {
         email: email,
         firstName: details.firstName,
-        lastName: details.lastName,
-        phone: details.phone
+        lastName: details.lastName
     };
     
     // Checking if account exists
