@@ -22,7 +22,10 @@ app.use(cors());
 // To handle requst to app root to handle out guest authorization token
 app.get('/', (req, res) => {
     // Generating authorization token for guest
-    const authorizationToken = generateJWT(config['jwt']['guest_email']);
+    const authorizationToken = generateJWT({
+        email: config['jwt']['guest_email'],
+        pass: config['jwt']['guest_pass']
+    });
 
     // Sending back guest token
     res.send({

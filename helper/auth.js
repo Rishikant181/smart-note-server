@@ -5,14 +5,9 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/env.json');
 
 // Method to generate a json web token and authorize user after authentication
-function generateJWT(email) {
-    // Initialising user object
-    const user = {
-        email: email
-    };
-
+function generateJWT(cred) {
     // Creating an authorization token and returning it
-    return jwt.sign(user, config['jwt']['PRIVATE_KEY']);
+    return jwt.sign(cred, config['jwt']['PRIVATE_KEY']);
 }
 
 // Method to authenticate auth token received from client

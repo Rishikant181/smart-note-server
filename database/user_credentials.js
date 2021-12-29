@@ -29,7 +29,9 @@ async function addUserAccount(cred, details) {
             return {
                 success: true,
                 type: 'AccountCreated',
-                data: details
+                data: {
+                    authToken: generateJWT(cred)
+                }
             };
         }
     }
