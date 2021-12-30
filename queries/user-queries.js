@@ -6,7 +6,7 @@ const {
     Response
 } = require('../types/http');
 
-const { verifyUserCredentials } = require('../database/user_credentials');
+const { loginUser } = require('../database/user_credentials');
 
 // To verify login credentials
 const login = {
@@ -14,7 +14,7 @@ const login = {
     args: {
         cred: { type: UserCredential }
     },
-    resolve: (parent, args) => verifyUserCredentials(args.cred)
+    resolve: (parent, args) => loginUser(args.cred)
 }
 
 module.exports.login = login;

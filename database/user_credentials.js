@@ -95,7 +95,7 @@ async function addUserCredentials(cred) {
 }
 
 // Method to fetch user password for credential verification
-async function verifyUserCredentials(cred) {
+async function loginUser(cred) {
     // Creating a new connection to database
     const mongoClient = new MongoClient(config['mongo_uri']);
 
@@ -143,4 +143,4 @@ async function verifyUserCredentials(cred) {
 
 module.exports.addUserAccount = addUserAccount;
 module.exports.addUserCredentials = addUserCredentials;
-module.exports.verifyUserCredentials = verifyUserCredentials;
+module.exports.loginUser = loginUser;
