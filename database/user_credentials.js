@@ -17,9 +17,6 @@ async function addUserAccount(cred, details) {
     // Adding user credentials
     credRes = await addUserCredentials(cred);
 
-    console.log(cred);
-    console.log(details);
-
     // Credentials added then adding account details
     if(credRes.success) {
         detailsRes = await updateAccountDetails(cred.email, details);
